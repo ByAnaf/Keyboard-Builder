@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyboardBuilder | ByAnaf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #fafafa; overflow-x: hidden; }
+        .card:hover .select-btn { opacity: 1; transform: translateY(0); }
+        .select-btn { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .active-tab { border-bottom: 2px solid #fafafa; color: #fafafa !important; }
+        .hidden { display: none; }
+        /* Smooth Fade In */
+        .page-fade { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="pb-32">
+
+    <!-- Navbar -->
+    <nav class="border-b border-zinc-800 p-6 mb-8 sticky top-0 bg-zinc-950/80 backdrop-blur-md z-[100]">
+        <div class="max-w-7xl mx-auto flex justify-between items-end">
+            <div class="flex flex-col leading-none cursor-pointer" onclick="showPage('home')">
+                <h1 class="text-2xl font-bold tracking-tighter italic uppercase">KEYBOARD<span class="text-zinc-500">BUILDER</span></h1>
+                <span class="text-[10px] text-white font-bold tracking-widest mt-1 uppercase">ByAnaf</span>
+            </div>
+            
+            <div class="flex gap-6 md:gap-8 text-xs md:text-sm font-medium text-zinc-500">
+                <button onclick="showPage('home')" id="tab-home" class="pb-1 hover:text-zinc-300 active-tab">Home</button>
+                <button onclick="showPage('barebone')" id="tab-barebone" class="pb-1 hover:text-zinc-300">Builder</button>
+                <button onclick="showPage('about')" id="tab-about" class="pb-1 hover:text-zinc-300">About</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page-fade flex flex-col items-center justify-center min-h-[70vh] text-center">
+            <div class="relative w-full max-w-5xl mb-12 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+                <img src="assets/hero-keyboard.jpg" alt="Mechanical Keyboard" class="w-full h-[450px] object-cover opacity-50">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-zinc-950 via-transparent to-transparent">
+                    <h2 class="text-5xl md:text-7xl font-black mb-4 tracking-tighter italic uppercase">Build Your Dream.</h2>
+                    <p class="text-zinc-400 max-w-lg mb-10 text-sm md:text-base">The most precise mechanical keyboard configurator for enthusiasts.</p>
+                    <button onclick="showPage('barebone')" class="bg-white text-black px-12 py-4 rounded-full font-black text-lg hover:bg-zinc-200 hover:scale-105 transition-all shadow-xl shadow-white/10">
+                        Build Your Keyboard Today!!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUILDER PAGE -->
+        <section id="page-builder" class="hidden page-fade">
+            <div class="flex gap-6 mb-10 text-[11px] uppercase tracking-[0.2em] font-bold border-b border-zinc-900 pb-4">
+                <button onclick="renderGrid('barebone')" id="btn-barebone" class="text-white border-b-2 border-white pb-4 -mb-4 transition-all">Barebone</button>
+                <button onclick="renderGrid('switches')" id="btn-switches" class="text-zinc-600 pb-4 -mb-4 hover:text-zinc-400 transition-all">Switches</button>
+                <button onclick="renderGrid('keycaps')" id="btn-keycaps" class="text-zinc-600 pb-4 -mb-4 hover:text-zinc-400 transition-all">Keycaps</button>
+            </div>
+            <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Products Injected Here -->
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="page-about" class="hidden page-fade max-w-3xl mx-auto py-16">
+            <h2 class="text-4xl font-bold mb-8 italic uppercase tracking-tighter">About KeyboardBuilder</h2>
+            <div class="space-y-8 text-zinc-400 text-lg leading-relaxed">
+                <p>KeyboardBuilder is a specialized configuration tool crafted by <strong class="text-white">Anaf</strong>. Designed with a minimalist, "Zinc" aesthetic, it serves as a bridge for enthusiasts to visualize and price their custom setups before purchasing.</p>
+                <p>Every mechanical keyboard is a unique reflection of its user. Our platform focuses on the three core pillars of the hobby: the <span class="text-white font-medium">Barebone kit</span>, the <span class="text-white font-medium">Switches</span>, and the <span class="text-white font-medium">Keycaps</span>.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
+                    <div class="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
+                        <h4 class="text-white font-bold mb-2 uppercase text-sm">Performance</h4>
+                        <p class="text-sm text-zinc-500">Optimized for high-speed browsing and instant price calculations.</p>
+                    </div>
+                    <div class="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
+                        <h4 class="text-white font-bold mb-2 uppercase text-sm">Aesthetics</h4>
+                        <p class="text-sm text-zinc-500">A dark, premium interface that keeps the focus on the hardware.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Summary Bar -->
+    <footer id="summary-bar" class="hidden fixed bottom-0 left-0 right-0 bg-zinc-950/95 backdrop-blur-xl border-t border-zinc-800 p-8 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-8">
+                <div class="flex flex-col">
+                    <p class="text-[9px] text-zinc-500 uppercase font-black tracking-widest">Base</p>
+                    <p id="sum-barebone" class="text-sm text-zinc-200 font-semibold">Not Selected</p>
+                </div>
+                <div class="h-8 w-px bg-zinc-800"></div>
+                <div class="flex flex-col">
+                    <p class="text-[9px] text-zinc-500 uppercase font-black tracking-widest">Action</p>
+                    <p id="sum-switches" class="text-sm text-zinc-200 font-semibold">Not Selected</p>
+                </div>
+                <div class="h-8 w-px bg-zinc-800"></div>
+                <div class="flex flex-col">
+                    <p class="text-[9px] text-zinc-500 uppercase font-black tracking-widest">Style</p>
+                    <p id="sum-keycaps" class="text-sm text-zinc-200 font-semibold">Not Selected</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-10">
+                <div class="text-right">
+                    <p class="text-[9px] text-zinc-500 uppercase font-black tracking-widest">Estimated Total</p>
+                    <p id="total-price" class="text-3xl font-black font-mono tracking-tighter">৳ 0</p>
+                </div>
+                <button onclick="window.print()" class="bg-zinc-100 text-black px-10 py-3 rounded-lg font-black text-sm uppercase hover:bg-white transition-colors">
+                    Save PDF
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = {
+            barebone: [
+                { name: "Keychron Q1 Pro", price: 18500, img: "assets/q1.jpg", desc: "75% Aluminum, Wireless" },
+                { name: "RK M75", price: 6500, img: "assets/m75.jpg", desc: "Gasket Mount, Screen" },
+                { name: "Monsgeek M1", price: 12000, img: "assets/m1.jpg", desc: "CNC Aluminum, Wired" },
+                { name: "Sugar65", price: 5800, img: "assets/sugar65.jpg", desc: "Budget Aluminum 65%" }
+            ],
+            switches: [
+                { name: "Gateron Milky Yellow", price: 1200, img: "assets/milky.jpg", desc: "Linear - Pre-lubed" },
+                { name: "Akko Cream Blue", price: 1500, img: "assets/akko.jpg", desc: "Tactile - V3 Pro" },
+                { name: "Gateron Oil King", price: 3500, img: "assets/oilking.jpg", desc: "Premium Deep Linear" }
+            ],
+            keycaps: [
+                { name: "PBT Cherry Profile", price: 2800, img: "assets/cherry.jpg", desc: "High Quality PBT" },
+                { name: "GMK Olivia Clone", price: 3200, img: "assets/olivia.jpg", desc: "Classic Aesthetics" },
+                { name: "Botanical PBT", price: 2500, img: "assets/botanical.jpg", desc: "Clean Green Setup" }
+            ]
+        };
+
+        let selection = { barebone: null, switches: null, keycaps: null };
+
+        function showPage(pageID) {
+            document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-builder').classList.add('hidden');
+            document.getElementById('page-about').classList.add('hidden');
+            document.getElementById('summary-bar').classList.add('hidden');
+
+            if (pageID === 'home') {
+                document.getElementById('page-home').classList.remove('hidden');
+            } else if (pageID === 'about') {
+                document.getElementById('page-about').classList.remove('hidden');
+            } else {
+                document.getElementById('page-builder').classList.remove('hidden');
+                document.getElementById('summary-bar').classList.remove('hidden');
+                renderGrid(pageID === 'barebone' ? 'barebone' : pageID);
+            }
+
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active-tab'));
+            document.getElementById(`tab-${pageID === 'barebone' || pageID === 'switches' || pageID === 'keycaps' ? 'barebone' : pageID}`).classList.add('active-tab');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderGrid(category) {
+            const container = document.getElementById('grid-container');
+            container.innerHTML = '';
+            
+            ['barebone', 'switches', 'keycaps'].forEach(cat => {
+                const btn = document.getElementById(`btn-${cat}`);
+                btn.className = (cat === category) ? "text-white border-b-2 border-white pb-4 -mb-4" : "text-zinc-600 pb-4 -mb-4 hover:text-zinc-400";
+            });
+
+            products[category].forEach(product => {
+                container.innerHTML += `
+                    <div class="card relative bg-zinc-900 border border-zinc-800/50 rounded-xl overflow-hidden group hover:border-zinc-700 transition-all">
+                        <div class="h-52 bg-zinc-800"><img src="${product.img}" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="font-black text-xs uppercase tracking-tight">${product.name}</h3>
+                            <p class="text-zinc-500 text-[10px] mt-1 uppercase font-semibold">${product.desc}</p>
+                            <div class="flex justify-between items-end mt-6">
+                                <p class="text-xl font-black font-mono">৳ ${product.price.toLocaleString()}</p>
+                                <span class="text-[9px] text-zinc-600 uppercase font-bold">In Stock</span>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <button onclick="selectItem('${category}', '${product.name}', ${product.price})" 
+                                    class="select-btn bg-white text-black px-8 py-3 rounded-lg font-black text-[10px] tracking-widest uppercase">
+                                Select Component
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function selectItem(category, name, price) {
+            selection[category] = { name, price };
+            document.getElementById(`sum-${category}`).innerText = name;
+            updateTotal();
+            
+            if(category === 'barebone') renderGrid('switches');
+            else if(category === 'switches') renderGrid('keycaps');
+        }
+
+        function updateTotal() {
+            let total = 0;
+            Object.values(selection).forEach(item => { if(item) total += item.price; });
+            document.getElementById('total-price').innerText = `৳ ${total.toLocaleString()}`;
+        }
+    </script>
+</body>
+</html>
