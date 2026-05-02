@@ -117,24 +117,25 @@
     </footer>
 
     <script>
-        const products = {
-            barebone: [
-                { name: "Keychron Q1 Pro", price: 18500, img: "assets/q1.jpg", desc: "75% Aluminum, Wireless" },
-                { name: "RK M75", price: 6500, img: "assets/m75.jpg", desc: "Gasket Mount, Screen" },
-                { name: "Monsgeek M1", price: 12000, img: "assets/m1.jpg", desc: "CNC Aluminum, Wired" },
-                { name: "Sugar65", price: 5800, img: "assets/sugar65.jpg", desc: "Budget Aluminum 65%" }
-            ],
-            switches: [
-                { name: "Gateron Milky Yellow", price: 1200, img: "assets/milky.jpg", desc: "Linear - Pre-lubed" },
-                { name: "Akko Cream Blue", price: 1500, img: "assets/akko.jpg", desc: "Tactile - V3 Pro" },
-                { name: "Gateron Oil King", price: 3500, img: "assets/oilking.jpg", desc: "Premium Deep Linear" }
-            ],
-            keycaps: [
-                { name: "PBT Cherry Profile", price: 2800, img: "assets/cherry.jpg", desc: "High Quality PBT" },
-                { name: "GMK Olivia Clone", price: 3200, img: "assets/olivia.jpg", desc: "Classic Aesthetics" },
-                { name: "Botanical PBT", price: 2500, img: "assets/botanical.jpg", desc: "Clean Green Setup" }
-            ]
-        };
+const products = {
+    barebone: [
+        { name: "Keychron Q1 Pro", price: 18500, img: "assets/keychron q1 pro.jpg", desc: "75% Aluminum, Wireless" },
+        { name: "RK M75", price: 6500, img: "assets/rk m75.jpg", desc: "Gasket Mount, Screen" },
+        { name: "Monsgeek M1", price: 12000, img: "assets/m1.jpg", desc: "CNC Aluminum, Wired" },
+        { name: "Sugar65", price: 5800, img: "assets/sugar 65.jpg", desc: "Budget Aluminum 65%" }
+    ],
+    // Keep switches and keycaps as they were or update them if you have files for them too
+    switches: [
+        { name: "Gateron Milky Yellow", price: 1200, img: "assets/milky.jpg", desc: "Linear - Pre-lubed" },
+        { name: "Akko Cream Blue", price: 1500, img: "assets/akko.jpg", desc: "Tactile - V3 Pro" },
+        { name: "Gateron Oil King", price: 3500, img: "assets/oilking.jpg", desc: "Premium Deep Linear" }
+    ],
+    keycaps: [
+        { name: "PBT Cherry Profile", price: 2800, img: "assets/cherry.jpg", desc: "High Quality PBT" },
+        { name: "GMK Olivia Clone", price: 3200, img: "assets/olivia.jpg", desc: "Classic Aesthetics" },
+        { name: "Botanical PBT", price: 2500, img: "assets/botanical.jpg", desc: "Clean Green Setup" }
+    ]
+};
 
         let selection = { barebone: null, switches: null, keycaps: null };
 
